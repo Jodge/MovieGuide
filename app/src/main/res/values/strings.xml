@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">MovieGuide</string>
+    <string name="action_filter">Filter</string>
+    <string name="loading_movies">Loading Movies</string>
+    <string name="sort_by">Sort By</string>
+    <string name="movie_guide">MovieGuide</string>
+    <string name="movie_details">Movie Details</string>
+    <string name="trailers">Trailers</string>
+    <string name="reviews">Reviews</string>
+    <string name="summary">Summary</string>
+    <string name="release_date">Release Date: %s</string>
+    <string name="rating">%s/10</string>
+    <string name="favorites">Favorites</string>
+    <string name="highest_rated">Highest Rated</string>
+    <string name="most_popular">Most Popular</string>
+    <string name="video_thumb">Video Thumbnail</string>
+</resources>
