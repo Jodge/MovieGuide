@@ -14,14 +14,9 @@ class RoomModule {
 
     @Singleton
     @Provides
-    fun provideMovieDataSource(context: Context) : MovieDao {
-        val database = MovieDatabase.getInstance(context)
-        return database.movieDao()
-    }
+    fun provideMovieDataSource(context: Context) : MovieDao = MovieDatabase.getInstance(context).movieDao()
 
     @Singleton
     @Provides
-    fun movieRepository(movieDao: MovieDao): MovieRepository {
-        return MovieDataSource(movieDao)
-    }
+    fun movieRepository(movieDao: MovieDao): MovieRepository =  MovieDataSource(movieDao)
 }

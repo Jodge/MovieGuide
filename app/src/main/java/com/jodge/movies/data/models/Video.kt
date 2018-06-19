@@ -3,11 +3,18 @@ package com.jodge.movies.data.models
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import com.jodge.movies.util.Constants
+import com.jodge.movies.util.EMPTY
+import com.jodge.movies.util.YOUTUBE_THUMBNAIL_URL
+import com.jodge.movies.util.YOUTUBE_VIDEO_URL
 
-class Video(val id: String, val name: String, val site: String,
-            @SerializedName("key") val videoId: String,
-            val size: Int, val type: String) : Parcelable {
+class Video(
+        val id: String,
+        val name: String,
+        val site: String,
+        @SerializedName("key") val videoId: String,
+        val size: Int,
+        val type: String
+) : Parcelable {
 
     constructor(source: Parcel): this (
             source.readString(),
@@ -21,12 +28,15 @@ class Video(val id: String, val name: String, val site: String,
     override fun describeContents() = 0
 
     override fun writeToParcel(dest: Parcel?, flags: Int) {
-        dest?.writeString(id)
-        dest?.writeString(name)
-        dest?.writeString(site)
-        dest?.writeString(videoId)
-        dest?.writeInt(size)
-        dest?.writeString(type)
+        if (dest == null) return
+        with(dest) {
+            writeString(id)
+            writeString(name)
+            writeString(site)
+            writeString(videoId)
+            writeInt(size)
+            writeString(type)
+        }
 
     }
 
@@ -40,17 +50,17 @@ class Video(val id: String, val name: String, val site: String,
         }
 
         fun getUrl(video: Video): String {
-            if (SITE_YOUTUBE.equals(video.site, true))
-                return String.format(Constants.YOUTUBE_VIDEO_URL, video.videoId)
-            else
-                return Constants.EMPTY
+            return when {
+                SITE_YOUTUBE.equals(video.site, true) -> String.format(YOUTUBE_VIDEO_URL, video.videoId)
+                else -> EMPTY
+            }
         }
 
         fun getThumbnailUrl(video: Video): String {
-            if (SITE_YOUTUBE.equals(video.site, true))
-                return String.format(Constants.YOUTUBE_THUMBNAIL_URL, video.videoId)
-            else
-                return Constants.EMPTY
+            return when {
+                SITE_YOUTUBE.equals(video.site, true) -> String.format(YOUTUBE_THUMBNAIL_URL, video.videoId)
+                else -> EMPTY
+            }
         }
     }
 }

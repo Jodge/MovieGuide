@@ -10,12 +10,8 @@ import javax.inject.Singleton
 class ApiModule {
 
     @Provides  @Singleton @Named("BASE_URL")
-    fun provideBaseUrl(): String {
-        return "http://api.themoviedb.org"
-    }
+    fun provideBaseUrl(): String = "http://api.themoviedb.org"
 
     @Provides  @Singleton
-    fun provideMovieDbApi(retrofit: Retrofit): TheMovieDbApi {
-        return retrofit.create(TheMovieDbApi::class.java)
-    }
+    fun provideMovieDbApi(retrofit: Retrofit): TheMovieDbApi =  retrofit.create(TheMovieDbApi::class.java)
 }

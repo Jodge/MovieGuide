@@ -6,20 +6,12 @@ class MovieDataSource @Inject constructor(movieDao: MovieDao) : MovieRepository 
 
     private var movieDao: MovieDao = movieDao
 
-    override fun findById(id: String): Movie? {
-        return movieDao.getMovieById(id)
-    }
+    override fun findById(id: String): Movie? = movieDao.getMovieById(id)
 
-    override fun findAll(): List<Movie> {
-        return movieDao.findAll()
-    }
+    override fun findAll(): List<Movie> = movieDao.findAll()
 
-    override fun deleteById(id: String) {
-        movieDao.deleteMovieById(id)
-    }
+    override fun deleteById(id: String) = movieDao.deleteMovieById(id)
 
-    override fun insert(movie: Movie) {
-        movieDao.insertMovie(movie)
-    }
+    override fun insert(movie: Movie) = movieDao.insertMovie(movie)
 
 }

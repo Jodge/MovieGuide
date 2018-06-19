@@ -44,14 +44,12 @@ class NetworkModule {
 
     @Provides @Singleton
     fun provideOkHttpCache(context: Context): Cache {
-        val cacheSize = 10 * 1024 * 1024; //10MB
+        val cacheSize = 10 * 1024 * 1024 //10MB
         return Cache(context.cacheDir, cacheSize.toLong())
     }
 
     @Provides @Singleton
-    fun provideGson(): Gson {
-        return GsonBuilder().create()
-    }
+    fun provideGson(): Gson =  GsonBuilder().create()
 
     private fun getInterceptorLevel(): HttpLoggingInterceptor.Level {
         return if (BuildConfig.DEBUG)

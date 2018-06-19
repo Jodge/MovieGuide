@@ -3,7 +3,7 @@ package com.jodge.movies.data.models
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import com.jodge.movies.util.Constants
+import com.jodge.movies.util.BASE_POSTER_PATH
 
 class Movie(
         @SerializedName("id") val id: String,
@@ -27,18 +27,19 @@ class Movie(
     override fun describeContents() = 0
 
     override fun writeToParcel(dest: Parcel?, flags: Int) {
-        dest?.writeString(id)
-        dest?.writeDouble(voteAverage)
-        dest?.writeString(title)
-        dest?.writeString(posterPath)
-        dest?.writeString(backdropPath)
-        dest?.writeString(overview)
-        dest?.writeString(releaseDate)
+        if (dest == null) return
+        with(dest) {
+            writeString(id)
+            writeDouble(voteAverage)
+            writeString(title)
+            writeString(posterPath)
+            writeString(backdropPath)
+            writeString(overview)
+            writeString(releaseDate)
+        }
     }
 
-    fun getPosterUrl(): String {
-        return "${Constants.BASE_POSTER_PATH}$posterPath"
-    }
+    fun getPosterUrl(): String = "$BASE_POSTER_PATH$posterPath"
 
     companion object {
         @JvmField

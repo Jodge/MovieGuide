@@ -12,9 +12,7 @@ class RxUtils {
         }
 
         fun unsubscribe(subscriptions: Array<Disposable?>) {
-            for (sub in subscriptions) {
-                unsubscribe(sub)
-            }
+            subscriptions.forEach(::unsubscribe)
         }
     }
 }

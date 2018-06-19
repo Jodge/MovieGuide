@@ -20,10 +20,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.jodge.movies.MovieGuideApp
 import com.jodge.movies.R
-import com.jodge.movies.util.Constants
 import com.jodge.movies.data.models.Movie
 import com.jodge.movies.data.models.Review
 import com.jodge.movies.data.models.Video
+import com.jodge.movies.util.BASE_BACKDROP_PATH
+import com.jodge.movies.util.MOVIE
 import kotlinx.android.synthetic.main.fragment_details.view.*
 import kotlinx.android.synthetic.main.trailers_and_reviews.view.*
 import javax.inject.Inject
@@ -51,7 +52,7 @@ class DetailsFragment : Fragment(), DetailsView, View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        movie = arguments?.getParcelable(Constants.MOVIE) as Movie
+        movie = arguments?.getParcelable(MOVIE) as Movie
         retainInstance = true
         (context?.applicationContext as MovieGuideApp).createDetailsComponent().inject(this)
     }
@@ -81,7 +82,7 @@ class DetailsFragment : Fragment(), DetailsView, View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         presenter.setView(this)
         presenter.showDetails(movie)
-        presenter.showFavoriteButton(movie);
+        presenter.showFavoriteButton(movie)
     }
 
     override fun onDestroy() {
@@ -95,7 +96,7 @@ class DetailsFragment : Fragment(), DetailsView, View.OnClickListener {
     }
 
     override fun showDetails(movie: Movie) {
-        Glide.with(context).load("${Constants.BASE_BACKDROP_PATH}${movie.backdropPath}").into(poster)
+        Glide.with(context).load("$BASE_BACKDROP_PATH${movie.backdropPath}").into(poster)
         title.text = movie.title
         releaseDate.text = getString(R.string.release_date, movie.releaseDate)
         overview.text = movie.overview
@@ -207,7 +208,7 @@ class DetailsFragment : Fragment(), DetailsView, View.OnClickListener {
     companion object {
         fun newInstance(movie: Movie): DetailsFragment {
             val args = Bundle()
-            args.putParcelable(Constants.MOVIE, movie)
+            args.putParcelable(MOVIE, movie)
             val fragment = DetailsFragment()
             fragment.arguments = args
             return fragment

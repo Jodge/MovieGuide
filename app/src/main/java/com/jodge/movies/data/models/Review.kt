@@ -15,10 +15,13 @@ class Review(val id: String, val author: String, val content: String, val url: S
     override fun describeContents() = 0
 
     override fun writeToParcel(dest: Parcel?, flags: Int) {
-        dest?.writeString(id)
-        dest?.writeString(author)
-        dest?.writeString(content)
-        dest?.writeString(url)
+        if (dest == null) return
+        with(dest) {
+            writeString(id)
+            writeString(author)
+            writeString(content)
+            writeString(url)
+        }
     }
 
     companion object {
