@@ -34,7 +34,7 @@ ext {
     targetSdkVersion = 26
     compileSdkVersion = 26
 
-    archLifecycleVersion = '1.1.0'
+    archLifecycleVersion = '1.1.1'
     roomLifecycleVersion = '1.1.0-alpha2'
     daggerVersion = '2.11'
 
