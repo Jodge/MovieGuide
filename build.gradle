@@ -35,7 +35,7 @@ ext {
     compileSdkVersion = 26
 
     archLifecycleVersion = '1.1.0'
-    roomLifecycleVersion = '1.1.0-alpha2'
+    roomLifecycleVersion = '1.1.1'
     daggerVersion = '2.11'
 
     // App dependencies
